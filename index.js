@@ -103,7 +103,12 @@ var Preston = (function () {
             if (query.length) {
                 url += '?' + query;
             }
-            return this.executeRequest('post', url, { form: requestData }).then(function (response) {
+            return this.executeRequest('post', url, {body: requestData, headers: [
+                {
+                    name: 'content-type',
+                    value: 'application/xml'
+                }
+            ]}).then(function (response) {
                 return _this2.parse(response);
             });
         }
