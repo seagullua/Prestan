@@ -97,7 +97,7 @@ var Preston = (function () {
             if (!data || typeof data !== 'object') {
                 throw new Error('No data specified to send, should be an object');
             }
-            requestData.postXml = this.build(data);
+            requestData = this.build(data);
             this.checkKeys(['id_shop', 'id_group_shop'], options);
             var query = this.stringify(options);
             if (query.length) {
