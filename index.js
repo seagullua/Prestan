@@ -151,13 +151,18 @@ var Preston = (function () {
             }
             url += options.id;
             delete options.id;
-            requestData.putXml = this.build(data);
+            requestData = this.build(data);
             this.checkKeys(['id_shop', 'id_group_shop'], options);
             var query = this.stringify(options);
             if (query.length) {
                 url += '?' + query;
             }
-            return this.executeRequest('put', url, { form: requestData }).then(function (response) {
+            return this.executeRequest('put', url, {body: requestData, headers: [
+                {
+                    name: 'content-type',
+                    value: 'application/xml'
+                }
+            ]}).then(function (response) {
                 return _this4.parse(response);
             });
         }
